@@ -6,7 +6,7 @@ branches:
   only:
   - master
 
-scripts: ./script/cibuild
+script: ./script/cibuild
 
 env:
   global:
