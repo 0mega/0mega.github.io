@@ -3,7 +3,7 @@ body {
   padding: 0;
   background: #151515 url("../images/bkg.png") 0 0;
   color: #eaeaea;
-  font: 16px;
+  font-size: 16px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 }
@@ -228,7 +228,23 @@ hr {
 
 a {
   color: #63c0f5;
-  text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
+  /*text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);*/
+  text-decoration: none;
+}
+
+/* Footer Links
+  links, link
+*/
+
+.links {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.link {
+  position: relative;
+  float: left;
+  padding: 0 10px 0 10px;
 }
 
 /* Clearfix */
@@ -254,4 +270,9 @@ a {
   padding: 0 20px 0 0;
   float: left;
   position: relative;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: #b5e853;
 }
