@@ -237,11 +237,14 @@ a {
 */
 
 .links {
-  width: 250px;
+  display: table;
   margin: 0 auto;
+  /*clear: both;*/
+  text-align: center;
 }
 
 .link {
+  text-align: center;
   position: relative;
   float: left;
   padding: 0 10px 0 10px;
