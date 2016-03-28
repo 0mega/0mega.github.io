@@ -6,9 +6,6 @@ task :test do
   HTMLProofer.check_directory(
     "./_site",
     {
-      :href_ignore=> [
-        'https://pt.linkedin.com/in/krukoleksandr/en',
-      ],
       :typhoeus => {
         :followlocation => true,
         :ssl_verifypeer => false,
