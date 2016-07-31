@@ -280,3 +280,8 @@ a {
   text-decoration: none;
   color: #53B5E8;
 }
+
+/* Restrict images to at most 100% of page width */
+img {
+  max-width: 100%;
+}
