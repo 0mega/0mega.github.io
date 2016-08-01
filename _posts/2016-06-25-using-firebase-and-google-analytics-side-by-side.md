@@ -57,23 +57,23 @@ mFirebaseAnalytics.logEvent(
 Now what we need to do to make this screen view available in GA is to create a trigger in GTM which extracts the data logged by FA and send that same data to GA.
 We start by creating a new Tag and choosing Googla Analytics as the product.
 
-![tag for GA]({{ site.url }}/images/tag_product.png)
+![tag for GA](/images/firebase/tag_product.png)
 
 The next step is to create a new variable of type Constant holding the Google Analytics Tracking ID, let's call it `GA Tracking ID`
 
-![var for tracking id]({{ site.url }}/images/tracking_id_var.png)
+![var for tracking id](/images/firebase/tracking_id_var.png)
 
 Now we select `Screen View` for `Track Type` and expand `More settings` and `Fields to Set`. This field will hold the screen name for our screen view event. For the `Field Name` we select `screenName` from the dropdown and for the `Value` we will create a new variable of type `Event Parameter`. Lets call the variable `Item Name` and select `view_item` for the `Suggested Event` and `item_name` as `Event Parameter`. We can also set a default value in case our event doesn't bring data in `item_name` parameter (I just set it to "not set" as usually seen in GA).
 
-![item name var]({{ site.url }}/images/item_name_var.png)
+![item name var](/images/firebase/item_name_var.png)
 
 Having those in place, we can create a trigger, which will be the mechanism that intercepts the type of event we are interested in. For that, in the `Fire On` section, we select `Custom`
 
-![screen view trigger]({{ site.url }}/images/screen_view_trigger.png)
+![screen view trigger](/images/firebase/screen_view_trigger.png)
 
 After the trigger is created, the only thing left is to confirm the tag creation.
 
-![tag creation complete](/images/tag_complete.png)
+![tag creation complete](/images/firebase/tag_complete.png)
 
 And we have a complete integration for Screen View events in FA and GA using TGM as a middleman :).
 
@@ -97,7 +97,7 @@ Firebase
 
 Bundle eventAction = new Bundle();
 eventAction.putString(
-  FirebaseAnalytics.Param.ITEM_CATEGORY,
+  FirebaseAnalytics.Param.CONTENT_TYPE,
   "my_category"
 );
 eventAction.putString(
@@ -111,6 +111,26 @@ mFirebaseAnalytics.logEvent(
 
 {% endhighlight %}
 
+The configuration in GTM for custom events is similar to what we just did with the screen view event. We start by creating a new Tag for Google Analytics, and we can reuse the `GA Tracking ID`. The tracking type in this case has to be `Event` and we will create two new variables, one for event category and another one for the event action.
+The following picture shows the creation of the category variable of type `Event Parameter` using the Firebase suggested parameters `select_content` for the event type and `content_type` for the event parameter.
+
+![event category](/images/firebase/event_category_var.png)
+
+To track the event action we create another variable using the same variable type and event type but this time we use the `item_id` for the event_parameter field.
+
+![event action](/images/firebase/event_action_var.png)
+
+The last step is to create a Custom Trigger in the `Fire On` section. We set the trigger to fire when the event name is `select_content`
+
+![user action trigger](/images/firebase/user_action_trigger.png)
+
+The overall Tag should look like the following
+
+![user action tag](/images/firebase/user_action_tag.png)
+
+Now we can finally publish the container and download the json file to use in the app.
+This configuration should allow you to track the screen views and user events both in FA and GA. Build and run your app and check that you can see the correct screen views and events in GA realtime section. Hope this helps you to getting the benefit from both Firebase and Google Analytics.
+
 #### Things to bear in mind
 
 0. Google Analytics lib can be removed `com.google.android.gms:play-services-analytics`
@@ -118,4 +138,4 @@ mFirebaseAnalytics.logEvent(
 0. Make sure you publish the container after creating the tags before you download the container json file.
 0. Make sure you choose the correct type of container in Google Tag Manager. There are two type of containers, `Legacy Android` and `Firebase Android`. The one we have to choose is `Firebase Android`, as shown in the next screenshoot.
 
-![firebase container]({{ site.url }}/images/firebase_container.png)
+![firebase container](/images/firebase/firebase_container.png)
