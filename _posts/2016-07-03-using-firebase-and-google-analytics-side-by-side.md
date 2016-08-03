@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Firebase alongside Google Analytics on Android
-date: 2016-06-25 10:00 UTC
+date: 2016-07-03 22:00 UTC
 author: Oleksandr Kruk
 tags: android, firebase, google analytics, google tag manager
 ---
@@ -24,9 +24,9 @@ The important point for this post is 1., given that we are interested in "interc
 
 ### Firebase and GTM setup
 
-Adding the Firebase and GTM libs to your application is quite simple process. It is well documented in the link referenced above so you can follow the instructions to set it up in the application.
+Adding the Firebase and GTM libs to your application is a quite simple process. It is well documented in the link referenced above so you can follow the instructions to set it up in the application.
 
-#### Configuring Screen View
+#### Configuring Screen Views
 
 Using Google Analytics you probably had something similar to the following to track page views:
 
@@ -67,7 +67,7 @@ Now we select `Screen View` for `Track Type` and expand `More settings` and `Fie
 
 ![item name var](/images/firebase/item_name_var.png)
 
-Having those in place, we can create a trigger, which will be the mechanism that intercepts the type of event we are interested in. For that, in the `Fire On` section, we select `Custom`
+Having those in place, we can create a trigger, which will be the mechanism that intercepts the type of event we are interested in. For that, in the `Fire On` section, we select `Custom` trigger type
 
 ![screen view trigger](/images/firebase/screen_view_trigger.png)
 
@@ -77,7 +77,7 @@ After the trigger is created, the only thing left is to confirm the tag creation
 
 And we have a complete integration for Screen View events in FA and GA using TGM as a middleman :).
 
-#### Configuring Custom Event
+#### Configuring Custom User Events
 
 Similarly to screen views, to track user actions with Google Analytics, you would have something like:
 
@@ -91,7 +91,7 @@ tracker.send(new HitBuilders.EventBuilder()
 
 {% endhighlight %}
 
-Firebase
+To do the equivalent in Firebase
 
 {% highlight java %}
 
@@ -129,7 +129,7 @@ The overall Tag should look like the following
 ![user action tag](/images/firebase/user_action_tag.png)
 
 Now we can finally publish the container and download the json file to use in the app.
-This configuration should allow you to track the screen views and user events both in FA and GA. Build and run your app and check that you can see the correct screen views and events in GA realtime section. Hope this helps you to getting the benefit from both Firebase and Google Analytics.
+This configuration should allow you to track the screen views and user events both in FA and GA. Build and run your app and check that you can see the correct screen views and events in GA realtime section. Hope this helps you to get the benefit from both Firebase and Google Analytics. Happy tracking!
 
 #### Things to bear in mind
 
