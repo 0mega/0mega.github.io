@@ -285,3 +285,9 @@ a {
 img {
   max-width: 100%;
 }
+
+/* Ferraria App Store and Google Play landing page */
+.app-store-badge {
+  width: 87%;
+  padding-left: 6%;
+}
